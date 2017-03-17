@@ -7,11 +7,17 @@ export function tpl () {
     let selection = editor.selection;
     let range = new vscode.Range(selection.start, selection.end);
     let seletedText = doc.getText(range);
-    let data = eval('(' + seletedText + ')');
-    let html = json2hbs(data);
-    editor.edit( (ed) => {
-        ed.replace(range,html);
-    });
+    let data = null;
+    try {
+        data = eval('(' + seletedText + ')');
+        let html = json2hbs(data);
+        editor.edit( (ed) => {
+            ed.replace(range,html);
+        });
+    } catch (e) {
+        vscode.window.showErrorMessage('必须选择json对象字符串哦');
+    }
+    
 }
 
 function json2hbs (data , key = '', parentKey = '') {
@@ -22,7 +28,6 @@ function json2hbs (data , key = '', parentKey = '') {
         console.log('array');
         html += `{{each ${parentKey ?  parentKey +'.' + key : key} as value index}} \n`;
         html += json2hbs(data[0],'value');
-        console.log(data[0]);
         html += `{{/each}} \n`;
     } else if (_.isObject(data)) {
         _.forEach(data, (v, k) => {
