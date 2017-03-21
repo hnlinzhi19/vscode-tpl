@@ -11,7 +11,8 @@
     "Other"
   ],
   "activationEvents": [
-    "onCommand:linz.tpl"
+    "onCommand:linz.tpl",
+    "onCommand:linz.cssImg"
   ],
   "main": "./out/src/extension",
   "contributes": {
@@ -19,13 +20,35 @@
       {
         "command": "linz.tpl",
         "title": "linz tpl"
+      },
+      {
+        "command": "linz.cssImg",
+        "title": "linz cssImg"
       }
     ],
     "menus": {
-        "editor/context": [{
-            "when": "resourceLangId == html",
-            "command": "linz.tpl"
-        }]
+      "editor/context": [
+        {
+          "when": "resourceLangId == html",
+          "command": "linz.tpl"
+        },
+        {
+          "when": "resourceLangId == scss",          
+          "command": "linz.cssImg"
+        },
+        {
+          "when": "resourceLangId == css",          
+          "command": "linz.cssImg"
+        },
+        {
+          "when": "resourceLangId == less",          
+          "command": "linz.cssImg"
+        },
+        {
+          "when": "resourceLangId == vue",          
+          "command": "linz.cssImg"
+        }
+      ]
     }
   },
   "scripts": {
@@ -37,9 +60,11 @@
   "devDependencies": {
     "@types/mocha": "^2.2.32",
     "@types/node": "^6.0.40",
+    "globby": "^6.1.0",
+    "jimp": "^0.2.27",
     "lodash": "^4.17.4",
     "mocha": "^2.3.3",
     "typescript": "^2.0.3",
-    "vscode": "^1.0.0"
+    "vscode": "^1.1.0"
   }
 }
