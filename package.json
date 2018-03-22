@@ -29,23 +29,23 @@
     "menus": {
       "editor/context": [
         {
-          "when": "resourceLangId == html",
+          "when": "editorLangId == html",
           "command": "linz.tpl"
         },
         {
-          "when": "resourceLangId == scss",          
+          "when": "editorLangId == scss",          
           "command": "linz.cssImg"
         },
         {
-          "when": "resourceLangId == css",          
+          "when": "editorLangId == css",          
           "command": "linz.cssImg"
         },
         {
-          "when": "resourceLangId == less",          
+          "when": "editorLangId == less",          
           "command": "linz.cssImg"
         },
         {
-          "when": "resourceLangId == vue",          
+          "when": "editorLangId == vue",          
           "command": "linz.cssImg"
         }
       ]
